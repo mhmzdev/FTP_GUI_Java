@@ -1,0 +1,53 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+
+public class FTP_Application {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FTP_Application window = new FTP_Application();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public FTP_Application() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBackground(SystemColor.text);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel lblNewLabel = new JLabel("Server");
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 32));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		frame.getContentPane().add(lblNewLabel, BorderLayout.NORTH);
+	}
+
+}

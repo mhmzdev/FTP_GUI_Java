@@ -1,0 +1,28 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class FTP_Client_Handler extends Thread {
+	final Socket socket;
+	final InputStream in;
+	final OutputStream out;
+	
+	FTP_Client_Handler(Socket soc, InputStream input, OutputStream output) {
+		this.socket = soc;
+		this.in = input;
+		this.out = output;
+	};
+	
+	@Override
+    public void run() {
+        
+        System.out.println("--> Thread Assigned...");
+        System.out.println();
+        while (true) {
+            
+        }
+    }
+}
