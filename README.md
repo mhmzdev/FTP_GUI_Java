@@ -14,7 +14,7 @@ Below are Screen shots of Server and Client Side user interface.
 
 # Instructions
 
-I code the GUI using Design panel in Eclipse that's why you might need Eclipse to use the design page otherwise if you know the java gui stuff like swing etc. then there's no need.
+I code the GUI using Design panel in Eclipse that's why you might need <b>Eclipse</b> to use the design page otherwise if you know the java gui stuff like swing etc. then there's no need.
 
 First, compile and run the Server side using:
 
@@ -28,4 +28,4 @@ Then, compile and run the Client side using:
 
 ```java FTP_Client.java```
 
-Other than these commands you can simply run the Serve side and client side using a 'Play' button in IDEs. But, make sure to run Server first and the Client.
+Other than these commands you can simply run the Serve side and client side using a 'Play' button in IDEs. <b>But, make sure to run Server first and the Client.</b>
