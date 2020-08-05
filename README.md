@@ -5,6 +5,6 @@ It was my End semester project i.e. creating this FTP having a user interface in
 
 ## Screen Shots
 
-![ScreenShots](img src="/ss/server.PNG" height = 100)
+<img src="/ss/server.PNG" height = 100>
 
-![ScreenShots](img src="/ss/client.PNG" height = 100)
+<img src="/ss/client.PNG" height = 100>
