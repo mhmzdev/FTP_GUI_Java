@@ -5,6 +5,24 @@ It was my End semester project i.e. creating this FTP having a user interface in
 
 ## Screen Shots
 
-<img src="/ss/server.PNG">
+## Server Side
+<img src="/ss/server.PNG" height = 400>
 
-<img src="/ss/client.PNG">
+## Client Side
+<img src="/ss/client.PNG" height = 400>
+
+# Instructions
+
+I code the GUI using Design panel in Eclipse that's why you might need Eclipse to use the design page otherwise if you know the java gui stuff like swing etc. then there's no need.
+
+First, compile and run the Server side using:
+```javac FTP_Server.java```
+
+```java FTP_Server.java```
+
+Then, compile and run the Client side using:
+```javac FTP_Client.java```
+
+```java FTP_Client.java```
+
+Other than these commands you can simply run the Serve side and client side using a 'Play' button in IDEs. But, make sure to run Server first and the Client.
