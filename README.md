@@ -4,7 +4,10 @@
 It was my End semester project i.e. creating this FTP having a user interface in Java. It simply sends file from Client to Server but not the other way around. Obviously you can do that as well. Plus, there are a lot of exceptions to handle which can also be done. I just did my part ;p
 
 # Screen Shots
-Below are Screen shots of Server and Client Side user interface. Video Demo is also available at <a href="https://youtu.be/jMyOhUVylJw">YouTube</a>
+Below are Screen shots of Server and Client Side user interface.
+
+## Video Demo
+Video Demo is also available at <a href="https://youtu.be/jMyOhUVylJw">YouTube</a>
 
 ## Server Side
 <img src="/ss/server.PNG" height = 400>
