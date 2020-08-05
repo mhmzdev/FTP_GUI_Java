@@ -16,11 +16,13 @@ It was my End semester project i.e. creating this FTP having a user interface in
 I code the GUI using Design panel in Eclipse that's why you might need Eclipse to use the design page otherwise if you know the java gui stuff like swing etc. then there's no need.
 
 First, compile and run the Server side using:
+
 ```javac FTP_Server.java```
 
 ```java FTP_Server.java```
 
 Then, compile and run the Client side using:
+
 ```javac FTP_Client.java```
 
 ```java FTP_Client.java```
