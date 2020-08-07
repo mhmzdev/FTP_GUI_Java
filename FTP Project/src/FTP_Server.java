@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.io.DataInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +26,8 @@ public class FTP_Server {
 	
 	static InputStream in;			// getting streams from Clients
 	static OutputStream out;		// sending streams to Clients
+	
+	
 	static JLabel lblNewLabel;
 	static JLabel lblNewLabel_2;
 	static JLabel lblNewLabel_3;
@@ -37,14 +40,17 @@ public class FTP_Server {
 				try {
 					FTP_Server window = new FTP_Server();
 					window.frmServer.setVisible(true);
+					
 					lblNewLabel.setText("Running");
 					lblNewLabel.setForeground(new Color(50, 205, 50));
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		
+			
 		
 			serverSocket = new ServerSocket(1234);	
 			// To accept clients
@@ -52,10 +58,10 @@ public class FTP_Server {
 
 			lblNewLabel_2.setText("Client Connected!");
 			lblNewLabel_2.setForeground(new Color(255, 215, 0));
+
 			
 			lblNewLabel_4.setText("IP: " + socket.getInetAddress());
 			lblNewLabel_5.setText("Port: " + socket.getPort());
-			
 			
 			
 			// in = InputStream; out = OutputStream objects
@@ -65,12 +71,14 @@ public class FTP_Server {
 			byte[] b = new byte[16 * 1024];
 			
 			int count;
-			while ((count = in.read(b)) > 0) {
-				out.write(b, 0, count);
-				lblNewLabel_3.setText("New File Recieved!");
-				lblNewLabel_3.setForeground(new Color(0, 255, 255));	
-				
-		}
+			
+			while (!socket.isClosed()) {
+					while ((count = in.read(b)) >= 0) {
+						out.write(b, 0, count);
+						lblNewLabel_3.setText("New File Recieved!");
+						lblNewLabel_3.setForeground(new Color(0, 255, 255));
+					}
+			}
 	}
 
 	/**
@@ -112,11 +120,14 @@ public class FTP_Server {
 		lb_ClientConn_Label.setBounds(54, 201, 109, 34);
 		frmServer.getContentPane().add(lb_ClientConn_Label);
 		
+		
 		lb_RecievedFiles_Label = new JLabel("Recieved Files:");
 		lb_RecievedFiles_Label.setForeground(new Color(255, 255, 255));
 		lb_RecievedFiles_Label.setFont(new Font("Comic Sans MS", Font.BOLD, 24));
 		lb_RecievedFiles_Label.setBounds(54, 318, 177, 42);
 		frmServer.getContentPane().add(lb_RecievedFiles_Label);
+		
+		
 		
 		
 		lblNewLabel = new JLabel("Stopped");

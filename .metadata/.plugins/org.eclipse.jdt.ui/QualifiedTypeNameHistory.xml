@@ -10,4 +10,8 @@
 <fullyQualifiedTypeName name="com.sun.java.util.jar.pack.Package.File"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+<fullyQualifiedTypeName name="sun.net.util.SocketExceptions"/>
+<fullyQualifiedTypeName name="java.net.SocketException"/>
+<fullyQualifiedTypeName name="java.io.DataOutputStream"/>
+<fullyQualifiedTypeName name="java.io.DataInputStream"/>
 </qualifiedTypeNameHistroy>

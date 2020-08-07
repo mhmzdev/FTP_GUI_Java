@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import sun.net.util.SocketExceptions;
+
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,6 +15,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.awt.Font;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -25,13 +30,17 @@ public class FTP_Client {
 	private JTextField textField;
 	
 	String str;
-	
+	String msg = "Exit";
 	// Socket and FTP
 	static Socket socket;
 	static InputStream in;
 	static OutputStream out;
+	static DataOutputStream dataOutputStream;
 	
 	static JLabel lblNewLabel_2;
+	static JLabel lblNewLabel_3;
+	static JButton btnNewButton_2;
+	
 	
 	public static void main(String[] args) throws Exception {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,16 +48,15 @@ public class FTP_Client {
 				try {
 					FTP_Client window = new FTP_Client();
 					window.frame.setVisible(true);
-					
 					lblNewLabel_2.setText("IP: " + socket.getInetAddress());
+					
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println("Client Exp: " + e);
 				}
 			}
 		});
 		
 		socket = new Socket("127.0.0.1", 1234);
-		
 	}
 
 	/**
@@ -113,8 +121,8 @@ public class FTP_Client {
 		
 		
 		// 'Send File' Button function
-		JButton btnNewButton_1 = new JButton("Send File");
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
+		JButton btnNewButton_1 = new JButton("Upload File");
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setBackground(new Color(50, 205, 50));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,42 +132,66 @@ public class FTP_Client {
 				str = textField.getText();
 				file = new File(str);
 				
-				
-				byte[] b = new byte[16 * 1024];
-				
-				try {
-					in = new FileInputStream(file);					
-				} catch (FileNotFoundException error) {
-					error.printStackTrace();
-				}
-				
-				try {
-					out = socket.getOutputStream();
-				} catch (IOException err) {
-					err.printStackTrace();
-				}
-				
-				try {
-					int count;
-					while ((count = in.read(b)) > 0) {
-						out.write(b, 0, count);
+					byte[] b = new byte[16 * 1024];
+					
+					try {
+						in = new FileInputStream(file);	
+						lblNewLabel_3.setText("File Sent!");
+						lblNewLabel_3.setForeground(new Color(0, 200, 0));
+					} catch (FileNotFoundException error) {
+						error.printStackTrace();
 					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				
+					
+					try {
+						out = socket.getOutputStream();
+					} catch (IOException err) {
+						err.printStackTrace();
+					}
+					
+					try {
+						int count;
+						while ((count = in.read(b)) > 0) {
+							out.write(b, 0, count);
+						}
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 			}
 		});
 		
 		
 		btnNewButton_1.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		btnNewButton_1.setBounds(297, 270, 162, 37);
+		btnNewButton_1.setBounds(161, 226, 162, 37);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		// 'Delete File' button function
+		btnNewButton_2 = new JButton("Delete File");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				str = textField.getText();
+				File delFile = new File(str);
+				delFile.delete();
+				lblNewLabel_3.setText("File Deleted!");
+				lblNewLabel_3.setForeground(new Color(200, 0, 0));
+			}
+		});
+		btnNewButton_2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		btnNewButton_2.setForeground(Color.WHITE);
+		btnNewButton_2.setBackground(Color.RED);
+		btnNewButton_2.setBounds(385, 226, 162, 37);
+		frame.getContentPane().add(btnNewButton_2);
 		
 		lblNewLabel_2 = new JLabel("IP:");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(250, 71, 194, 16);
+		lblNewLabel_2.setBounds(259, 70, 176, 16);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		lblNewLabel_3 = new JLabel("File Status");
+		lblNewLabel_3.setForeground(new Color(47, 79, 79));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		lblNewLabel_3.setBounds(273, 297, 162, 31);
+		frame.getContentPane().add(lblNewLabel_3);
 	}
 }
